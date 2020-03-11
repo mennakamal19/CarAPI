@@ -55,6 +55,7 @@ public class CarFragment extends Fragment
     public class backgroud extends AsyncTask<String,Void,List<BookItem>>
     {
         List<BookItem>bk;
+        
         @Override
         protected void onPreExecute()
         {
