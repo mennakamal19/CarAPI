@@ -80,7 +80,6 @@ public class CarFragment extends Fragment
             progressBar.setVisibility(View.GONE);
             bookItem.clear();
             if(bookItems!=null){bookItem.addAll(bookItems);} // null check because i got Exception
-
            // BookAdapter bookAdapter = new BookAdapter(bookItem);
             bookAdapter = new BookAdapter(bookItem);
             recyclerView.setAdapter(bookAdapter);
