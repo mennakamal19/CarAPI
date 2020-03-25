@@ -26,7 +26,6 @@ import java.util.List;
 public class CarFragment extends Fragment
 {
     View view;
-    String title,author,thum;
     List<BookItem>bookItem;
     BookAdapter bookAdapter;
     RecyclerView recyclerView;
@@ -50,16 +49,16 @@ public class CarFragment extends Fragment
         layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
         bookItem = new ArrayList<>();
-        new backgroud().execute("https://www.googleapis.com/books/v1/volumes?q=cars");
+        new background().execute("https://www.googleapis.com/books/v1/volumes?q=cars");
     }
-    public class backgroud extends AsyncTask<String,Void,List<BookItem>>
+    public class background extends AsyncTask<String,Void, List<BookItem>>
     {
         List<BookItem>bk;
         @Override
         protected void onPreExecute()
         {
             progressBar.setVisibility(View.VISIBLE);
-            super.onPreExecute();
+            //super.onPreExecute();
         }
 
         @Override
@@ -80,10 +79,12 @@ public class CarFragment extends Fragment
         {
             progressBar.setVisibility(View.GONE);
             bookItem.clear();
-            bookItem.addAll(bookItems);
-            BookAdapter bookAdapter = new BookAdapter(bookItem);
+            if(bookItems!=null){bookItem.addAll(bookItems);} // null check because i got Exception
+
+           // BookAdapter bookAdapter = new BookAdapter(bookItem);
+            bookAdapter = new BookAdapter(bookItem);
             recyclerView.setAdapter(bookAdapter);
-            super.onPostExecute(bookItems);
+            //super.onPostExecute(bookItems);
         }
     }
     public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookVH>
